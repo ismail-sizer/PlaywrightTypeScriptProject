@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test('Retrace Login Page Test', async ({ page }) => {
+test('Retrace Login Page Trace Test', async ({ page, context }) => {
+
+  await context.tracing.start({snapshots:true, screenshots:true});
+
   await page.goto('https://staging.retrace.ai/login');
   await page.getByRole('textbox', { name: 'Enter your email address' }).click();
   await page.getByRole('textbox', { name: 'Enter your email address' }).fill('testing@retrace.com');
@@ -9,4 +12,7 @@ test('Retrace Login Page Test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Enter the Partner ID' }).click();
   await page.getByRole('textbox', { name: 'Enter the Partner ID' }).fill('abcdefgh');
   await page.getByRole('button', { name: 'Logins' }).click();
+
+  await context.tracing.stop({path:'traceTest.zip'});
+
 });
