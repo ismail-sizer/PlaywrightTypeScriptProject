@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-test('Retrace Login Page Test', async({page})=> {
+test('Retrace Home Page Test', async({page})=> {
 
     await page.goto('https://retrace.ai/')
 
